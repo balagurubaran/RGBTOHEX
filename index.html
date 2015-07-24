@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>RGB to HEX</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/RGBStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+        var redTextFieldComponent   = null;
+        var greenTextFieldComponent = null;
+        var blueTextFieldComponent  = null;
+        var hexTextFieldComponent   = null;
+
+        var redTextLabel            = null;
+        var greenTextLabel          = null;
+        var blueTextLabel           = null;
+        var hexTextLabel            = null;
+        var titleText               = null;
+        var jumbotron               = null;
+
+        function initVariable(){
+            redTextFieldComponent   = document.getElementById("red");
+            greenTextFieldComponent = document.getElementById("green");
+            blueTextFieldComponent  = document.getElementById("blue");
+            hexTextFieldComponent   = document.getElementById("hex");
+
+            redTextLabel            = document.getElementById("redLabel");
+            greenTextLabel           = document.getElementById("greenLabel");
+            blueTextLabel           = document.getElementById("blueLabel");
+            hexTextLabel            = document.getElementById("hexLabel");
+            titleText               = document.getElementById("Title");
+            jumbotron               = document.getElementById("jumbotron");
+        }
+        function validateForm() {
+
+            if(redTextFieldComponent.value <= 256 && greenTextFieldComponent.value <= 256 && blueTextFieldComponent.value <= 256) {
+               var colorValue =  "#".concat(((blueTextFieldComponent.value | greenTextFieldComponent.value << 8 | redTextFieldComponent.value << 16) / 0x1000000).toString(16).substring(2));
+
+                if(blueTextFieldComponent.value == 0 && colorValue.length <= 5){
+                    colorValue = insert(colorValue,colorValue.length,"00");
+                }
+                if(redTextFieldComponent.value == 0 && colorValue.length <= 5){
+                    colorValue = insert(colorValue,1,"00");
+                }
+                if(blueTextFieldComponent.value == 0 && colorValue.length <= 5){
+                    colorValue = insert(colorValue,3,"00");
+                }
+                invertColor(colorValue);
+
+
+            }
+            return false;
+        }
+        function insert(str, index, value) {
+            return str.substr(0, index) + value + str.substr(index);
+        }
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+
+        function hextorgb(){
+
+            var r = hexTextFieldComponent.value >> 16;
+            var g = hexTextFieldComponent.value >> 8 & 0xFF;
+            var b = hexTextFieldComponent.value & 0xFF;
+
+            redTextFieldComponent.value = r;
+            greenTextFieldComponent.value = g;
+            blueTextFieldComponent.value = b;
+            invertColor(hexTextFieldComponent.value)
+        }
+
+        function invertColor(hexColor){
+            var color = hexColor;
+            color = color.substring(1);           // remove #
+            color = parseInt(color, 16);          // convert to integer
+            color = 0xFFFFFF ^ color;             // invert three bytes
+            color = color.toString(16);           // convert to hex
+            color = ("000000" + color).slice(-6); // pad with leading zeros
+            color = "#" + color;
+
+            //document.body.style.backgroundColor = hexColor;
+            jumbotron.style.backgroundColor = hexColor;
+
+
+            if(hexColor.length  > 1) {
+              //  redTextLabel.style.color = color;
+               // greenTextLabel.style.color = color;
+                //blueTextLabel.style.color = color;
+                titleText.style.color = color;
+                hexTextFieldComponent.value = hexColor;
+                //hexTextLabel.style.color = color;
+
+            }
+        }
+
+        function loadGithubPage(){
+            window.open("https://github.com/balagurubaran","_blank");
+        }
+
+        function validateTextFieldValues(textField){
+            if(textField.value > 256){
+                textField.style.border = "solid #FF0000";
+            }else{
+                textField.style.border = "initial";
+            }
+            validateForm();
+        }
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+</head>
+<body onload="initVariable()">
+<div class="container">
+    <div class="jumbotron" id="jumbotron">
+        <h1 id = "Title">RGB to HEX</h1>
+    </div>
+    <div class="row">
+    <form role="form" onsubmit=" return validateForm()">
+
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label name="red" id="redLabel">Red</label>
+                    <input type="text" value="0" min="0" max="256" class="form-control" id="red" onkeypress="isNumberKey(event)" onkeyup="validateTextFieldValues(this)">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="green" id="greenLabel">Green</label>
+                    <input type="text"  value="0" min="0" max="256" class="form-control" id="green" onkeypress="isNumberKey(event)" onkeyup="validateTextFieldValues(this)">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="blue" id="blueLabel">Blue</label>
+                    <input type="text" value="0" min="0" max="256" class="form-control" id="blue" onkeypress="isNumberKey(event)" onkeyup="validateTextFieldValues(this)">
+                </div>
+            </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="hex" id="hexLabel">Hex</label>
+                <input type="text"  class="form-control" id="hex" onkeypress="hextorgb()">
+            </div>
+        </div>
+
+    </form>
+</div>
+</div>
+
+<div class="middlebox">
+
+    <div class="row text-center">
+        <div class=" col-sm-3 text-center">
+            <div>
+                <img src="Resource/github_login_icon.gif" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
+
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div>
+                <button type="button"  style="padding: 0;border: none;background: none;" data-toggle="popover" data-placement="top" title="What does this RGB to Hex converter do?" data-content="A simple tool for converting RGB values to HEX and vice versa.
+">
+                    <img src="Resource/help.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div >
+                <img src="Resource/fb.png" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
+
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div>
+                <img src="Resource/twitter.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-3 text-center">
+            <h3>@iappscrazy2015</h3>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

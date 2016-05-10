@@ -10,6 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<META NAME="description" CONTENT="Convert RGB to HEX and HEX to RGB">
+	<META NAME="keywords" CONTENT="RGB TO HEX, HEX TO RGB, Conversion,RGB,HEX">
+	<META NAME="robot" CONTENT="index,follow">
 
     <script>
         var redTextFieldComponent   = null;
@@ -53,9 +56,8 @@
                 if(blueTextFieldComponent.value == 0 && colorValue.length <= 5){
                     colorValue = insert(colorValue,3,"00");
                 }
+					hexTextFieldComponent.value = colorValue;
                 invertColor(colorValue);
-
-
             }
             return false;
         }
@@ -72,8 +74,13 @@
         }
 
         function hextorgb(){
-			var missingCharCount = 6 - hexTextFieldComponent.value.length;
-			var finalString = hexTextFieldComponent.value;
+			var finalString = hexTextFieldComponent.value
+			if (hexTextFieldComponent.value.indexOf("#") === 1){
+				finalString =  hexTextFieldComponent.value.substring(1);
+			}
+	
+			var missingCharCount = 6 - finalString.length;
+
 			for (var i = 0;i < missingCharCount;i++){
 					finalString = finalString.concat("0");
 			}
@@ -85,7 +92,7 @@
 			redTextFieldComponent.value = r;
 			greenTextFieldComponent.value = g;
 			blueTextFieldComponent.value = b;
-           invertColor("#" + finalString)
+           invertColor("#"+finalString)
         }
 
         function invertColor(hexColor){
@@ -110,7 +117,7 @@
                 //blueTextLabel.style.color = color;
                 //titleText.style.color = color;
                 titleText.innerHTML =  hexColor;
-                hexTextFieldComponent.value = hexColor;
+                
                 //hexTextLabel.style.color = color;
 
             }

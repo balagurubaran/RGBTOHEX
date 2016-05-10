@@ -23,6 +23,7 @@
         var hexTextLabel            = null;
         var titleText               = null;
         var jumbotron               = null;
+        var wall                    = null;
 
         function initVariable(){
             redTextFieldComponent   = document.getElementById("red");
@@ -36,6 +37,7 @@
             hexTextLabel            = document.getElementById("hexLabel");
             titleText               = document.getElementById("Title");
             jumbotron               = document.getElementById("jumbotron");
+            wall                    = document.getElementById("wall");
         }
         function validateForm() {
 
@@ -97,14 +99,20 @@
             color = "#" + color;
 
             //document.body.style.backgroundColor = hexColor;
+<<<<<<< HEAD
             jumbotron.style.backgroundColor = hexColor;
+=======
+            //jumbotron.style.backgroundColor = hexColor;
+            wall.style.backgroundColor = hexColor;
+>>>>>>> origin/master
 
             if(hexColor.length  > 1) {
               //  redTextLabel.style.color = color;
                // greenTextLabel.style.color = color;
                 //blueTextLabel.style.color = color;
                 titleText.style.color = color;
-                hexTextFieldComponent.value = hexColor;
+                titleText.innerHTML =  hexColor;
+                //hexTextFieldComponent.value = hexColor;
                 //hexTextLabel.style.color = color;
 
             }
@@ -139,51 +147,58 @@
 <body onload="initVariable()">
 <div class="container">
     <div class="jumbotron" id="jumbotron">
-        <h1 id = "Title">RGB to HEX</h1>
+        <h1>RGB to HEX</h1>
     </div>
     <div class="row">
     <form role="form" onsubmit=" return validateForm()">
 
-            <div class="col-sm-3">
+            <div class="col-xs-4">
                 <div class="form-group">
                     <label name="red" id="redLabel">Red</label>
                     <input type="text" value="0" min="0" max="256" class="form-control" id="red" onkeyup="validateTextFieldValues(event,this)">
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-4">
                 <div class="form-group">
                     <label for="green" id="greenLabel">Green</label>
                     <input type="text"  value="0" min="0" max="256" class="form-control" id="green"  onkeyup="validateTextFieldValues(event,this)">
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-4">
                 <div class="form-group">
                     <label for="blue" id="blueLabel">Blue</label>
                     <input type="text" value="0" min="0" max="256" class="form-control" id="blue"  onkeyup="validateTextFieldValues(event,this)">
                 </div>
             </div>
-
-        <div class="col-sm-3">
+        <!--<div class="col-xs-3">
             <div class="form-group">
                 <label for="hex" id="hexLabel">Hex</label>
                 <input type="text"  class="form-control" id="hex" onkeyup="hextorgb()">
             </div>
         </div>
+        -->
 
     </form>
-</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 ">
+            <div class="well" id="wall" style="text-align: center"><h3 id = "Title">RGB to HEX</h3></div>
+        </div>
+
+    </div>
 </div>
 
 <div class="middlebox">
 
     <div class="row text-center">
-        <div class=" col-sm-3 text-center">
+        <div class=" col-xs-3 text-center">
             <div>
+                <a href="#" data-toggle="tooltip" title="Github Link!">
                 <img src="Resource/github_login_icon.gif" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
-
+                </a>
             </div>
         </div>
-        <div class="col-sm-3 text-center">
+        <div class="col-xs-3 text-center">
             <div>
                 <button type="button"  style="padding: 0;border: none;background: none;" data-toggle="popover" data-placement="top" title="What does this RGB to Hex converter do?" data-content="A simple tool for converting RGB values to HEX and vice versa.
 ">
@@ -191,14 +206,20 @@
                 </button>
             </div>
         </div>
-        <div class="col-sm-3 text-center">
+        <div class="col-xs-3 text-center">
             <div >
+                <a href="#" data-toggle="tooltip" title="Share the link in FB!">
                 <img src="Resource/fb.png" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
+<<<<<<< HEAD
 	
+=======
+                 </a>
+>>>>>>> origin/master
             </div>
         </div>
-        <div class="col-sm-3 text-center">
+        <div class="col-xs-3 text-center">
             <div>
+                <a href="#" data-toggle="tooltip" title="Share link in Twitter!">
                 <img src="Resource/twitter.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
             </div>
         </div>
@@ -207,7 +228,7 @@
 
 <div class="footer">
     <div class="row">
-        <div class="col-sm-offset-4 col-sm-3 text-center">
+        <div class="col-xs-offset-4 col-xs-3 text-center">
             <h3>@iappscrazy2015</h3>
         </div>
 

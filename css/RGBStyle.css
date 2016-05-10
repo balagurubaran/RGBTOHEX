@@ -1,6 +1,7 @@
 .middlebox {
     position: absolute;
-    bottom: 25%;
+    padding-top: 10%;
+
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;

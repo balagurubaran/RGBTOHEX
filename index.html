@@ -64,20 +64,27 @@
             var charCode = (evt.which) ? evt.which : event.keyCode;
             if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
+				validateForm()
 
             return true;
         }
 
         function hextorgb(){
-
-            var r = hexTextFieldComponent.value >> 16;
-            var g = hexTextFieldComponent.value >> 8 & 0xFF;
-            var b = hexTextFieldComponent.value & 0xFF;
-
-            redTextFieldComponent.value = r;
-            greenTextFieldComponent.value = g;
-            blueTextFieldComponent.value = b;
-            invertColor(hexTextFieldComponent.value)
+			var missingCharCount = 6 - hexTextFieldComponent.value.length;
+			var finalString = hexTextFieldComponent.value;
+			for (var i = 0;i < missingCharCount;i++){
+					finalString = finalString.concat("0");
+			}
+			var bigint = parseInt(finalString, 16);
+			var r = (bigint >> 16) & 255;
+			var g = (bigint >> 8) & 255;
+			var b = bigint & 255;
+			 
+			redTextFieldComponent.value = r;
+			greenTextFieldComponent.value = g;
+			blueTextFieldComponent.value = b;
+		
+           invertColor(hexTextFieldComponent.value)
         }
 
         function invertColor(hexColor){
@@ -92,7 +99,6 @@
             //document.body.style.backgroundColor = hexColor;
             jumbotron.style.backgroundColor = hexColor;
 
-
             if(hexColor.length  > 1) {
               //  redTextLabel.style.color = color;
                // greenTextLabel.style.color = color;
@@ -105,16 +111,24 @@
         }
 
         function loadGithubPage(){
-            window.open("https://github.com/balagurubaran","_blank");
+            window.open("https://github.com/balagurubaran/RGBTOHEX","_blank");
         }
 
-        function validateTextFieldValues(textField){
+        function validateTextFieldValues(evt,textField){
+			var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)){
+					textField.style.border = "solid #FF0000";
+					return false;
+				}
+            		
             if(textField.value > 256){
                 textField.style.border = "solid #FF0000";
+				
             }else{
                 textField.style.border = "initial";
             }
             validateForm();
+			return true;
         }
         $(document).ready(function(){
             $('[data-toggle="popover"]').popover();
@@ -133,26 +147,26 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label name="red" id="redLabel">Red</label>
-                    <input type="text" value="0" min="0" max="256" class="form-control" id="red" onkeypress="isNumberKey(event)" onkeyup="validateTextFieldValues(this)">
+                    <input type="text" value="0" min="0" max="256" class="form-control" id="red" onkeyup="validateTextFieldValues(event,this)">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="green" id="greenLabel">Green</label>
-                    <input type="text"  value="0" min="0" max="256" class="form-control" id="green" onkeypress="isNumberKey(event)" onkeyup="validateTextFieldValues(this)">
+                    <input type="text"  value="0" min="0" max="256" class="form-control" id="green"  onkeyup="validateTextFieldValues(event,this)">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="blue" id="blueLabel">Blue</label>
-                    <input type="text" value="0" min="0" max="256" class="form-control" id="blue" onkeypress="isNumberKey(event)" onkeyup="validateTextFieldValues(this)">
+                    <input type="text" value="0" min="0" max="256" class="form-control" id="blue"  onkeyup="validateTextFieldValues(event,this)">
                 </div>
             </div>
 
         <div class="col-sm-3">
             <div class="form-group">
                 <label for="hex" id="hexLabel">Hex</label>
-                <input type="text"  class="form-control" id="hex" onkeypress="hextorgb()">
+                <input type="text"  class="form-control" id="hex" onkeyup="hextorgb()">
             </div>
         </div>
 
@@ -180,7 +194,7 @@
         <div class="col-sm-3 text-center">
             <div >
                 <img src="Resource/fb.png" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
-
+	
             </div>
         </div>
         <div class="col-sm-3 text-center">

@@ -98,7 +98,7 @@
         function invertColor(hexColor){
 				console.log (hexColor)
 
-            /*var color = hexColor;
+            var color = hexColor;
             color = color.substring(1);           // remove #
             color = parseInt(color, 16);          // convert to integer
             color = 0xFFFFFF ^ color;             // invert three bytes
@@ -143,9 +143,7 @@
             validateForm();
 			return true;
         }
-        $(document).ready(function(){
-            $('[data-toggle="popover"]').popover();
-        });
+        
     </script>
 
 </head>
@@ -155,9 +153,7 @@
         <h1>RGB to HEX</h1>
     </div>
     <div class="row">
-    <form role="form" onsubmit=" return validateForm()">
-
-            <div class="col-xs-3">
+     <div class="col-xs-3">
                 <div class="form-group">
                     <label name="red" id="redLabel">Red</label>
                     <input type="text" value="0" min="0" max="256" class="form-control" id="red" onkeyup="validateTextFieldValues(event,this)">
@@ -181,17 +177,12 @@
                 <input type="text"  class="form-control" id="hex" onkeyup="hextorgb()">
             </div>
         </div>
-        
-
-    </form>
     </div>
    <div class="row">
         <div class="col-xs-12 ">
             <div class="well" id="wall" style="text-align: center"><h3 id = "Title">RGB to HEX</h3></div>
         </div>
-
     </div>
-</div>
 
 <div class="middlebox">
     <div class="row text-center">
@@ -204,25 +195,11 @@
         </div>
         <div class="col-xs-6 text-center">
             <div>
-                <button type="button"  style="padding: 0;border: none;background: none;" data-toggle="popover" data-placement="top" title="What does this RGB to Hex converter do?" data-content="A simple tool for converting RGB values to HEX and vice versa.
-">
+                <button type="button"  style="padding: 0;border: none;background: none;" data-toggle="popover" data-placement="top" title="What does this RGB to Hex converter do?" data-content="A tool for converting RGB values to HEX and vice versa.">
                     <img src="Resource/help.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
                 </button>
             </div>
         </div>
-       <!--- <div class="col-xs-3 text-center">
-            <div >
-                <a href="#" data-toggle="tooltip" title="Share the link in FB!">
-                <img src="Resource/fb.png" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
-                 </a>
-            </div>
-        </div>
-        <div class="col-xs-3 text-center">
-            <div>
-                <a href="#" data-toggle="tooltip" title="Share link in Twitter!">
-                <img src="Resource/twitter.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
-            </div>
-        </div>--->
     </div>
 </div>
 
@@ -231,9 +208,8 @@
         <div class="col-xs-offset-4 col-xs-3 text-center">
             <h3>@iappscrazy2016</h3>
         </div>
-
     </div>
 </div>
-
+</div>
 </body>
 </html>

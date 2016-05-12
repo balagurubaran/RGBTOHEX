@@ -2,41 +2,70 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Bootstrap Example</title>
-
+    <title>RGB to HEX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<META NAME="description" CONTENT="Convert RGB to HEX and HEX to RGB">
+	<META NAME="keywords" CONTENT="RGB TO HEX, HEX TO RGB, Conversion,RGB,HEX">
+	<META NAME="robot" CONTENT="index,follow">
+
+</head>
+<body>
+<div class="container" ng-app="RGBTOHEX" ng-controller="ConvertorCtrl as convertor">
+   <div class="jumbotron" ng-model="jumbotron">
+        <h1>RGB to HEX</h1>
+   </div>
+   	<div class="row text-center top-buffer">
+  	  		<div class="col-xs-3">
+                <label name="red" id="redLabel">Red</label>
+                    <input type="text" value="0" min="0" max="256" ng-model="red" ng-keyup= "convertRGBtoHEX()">
+            </div>
+            <div class="col-xs-3">
+                <label for="green" id="greenLabel">Green</label>
+                    <input type="text"  value="0" min="0" max="256" ng-model="green" ng-keyup= "convertRGBtoHEX()">
+            </div>
+            <div class="col-xs-3">
+                <label for="blue" id="blueLabel">Blue</label>
+                 <input type="text" value="0" min="0" max="256" ng-model="blue" ng-keyup= "convertRGBtoHEX()" >
+            </div>
+       		 <div class="col-xs-3">
+            	<label for="hex" ng-model="hexLabel">Hex</label>
+                <input type="text"  ng-model="hex" ng-keyup= "converHexToRGB()">
+        	</div>
+   	</div>
+   	<div class="row text-center top-buffer">
+  			<div class="well text-center" ng-style="wall.style">
+  				<h2 ng-style="titleLabel.style">RGB TO HEX<h2>
+  			</div>
+  	</div>
+   	<div class="row text-center top-buffer">
+        <div class=" col-xs-6 text-center">
+            <div>
+                <a href="#" data-toggle="tooltip" title="Github Link!">
+                		<img src="Resource/github_login_icon.gif" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-6 text-center">
+            <div>
+                	<button type="button"  style="padding: 0;border: none;background: none;" data-toggle="popover" data-placement="top" title="What does this RGB to Hex converter do?" data-content="A tool for converting RGB values to HEX and vice versa.">
+                    <img src="Resource/help.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
+               		 </button>
+           	</div>
+        </div>
+    </div>
+    <div class="footer">
+		<div class="row">
+        	<div class="col-xs-offset-4 col-xs-3 text-center">
+            <h3>@iappscrazy2016</h3>
+        	</div>
+    	</div>
+	</div>
+</div>
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/RGBStyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-    <script>
-        function validateForm() {
-            alert("Name must be filled out");
-        }
-    </script>
-
-</head>
-
-<body>
-
-<div class="container">
-    <h2>Vertical (basic) Form</h2>
-    <div class="row">
-    <form role="form" onsubmit="validateForm()">
-        <div class="col-sm-3">
-            <div class="form-group">
-                <label name="red">Red</label>
-                <input type="text" class="form-control" id="red">
-            </div>
-        </div>
-        <div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-        </div>
-</div>
-
-</body>
+    <script src="js/convertor.js"></script>
 </html>

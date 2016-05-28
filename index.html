@@ -3,90 +3,129 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>RGB to HEX</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<META NAME="description" CONTENT="Easy way convert RGB to HEX and HEX to RGB">
-<META NAME="keywords" CONTENT="RGB TO HEX, HEX TO RGB,RGB,HEX">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0">
+<META NAME="description" CONTENT="convert RGB to HEX and HEX to RGB">
 <META NAME="robot" CONTENT="index,follow">
 <meta name="google-site-verification" content="Xu_zTFYzZxbASEyZPG34VmSOndRFMmZYZHp0NjLIWC0" />
+<meta property="og:url"           content="http://www.rgbtohex.in" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="RGB to HEX" />
+  <meta property="og:description"   content="Easy way to convert RGB to HEX and HEX to RGB" />
+  <meta property="og:image"         content="http://www.rgbtohex.in/Resource/icon/apple-touch-icon-180x180.png" />
+  <script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='4bbffd298afa9e80017a1344338d85a7' async='async'></script>
 
 </head>
 <body>
-<div class="container" ng-app="RGBTOHEX" ng-controller="ConvertorCtrl as convertor">
-  <div class="row">
-    <div class="jumbotron" ng-model="jumbotron">
-        <h1 style = "text-center">RGB to HEX</h1>
+<div class="container" data-ng-app="RGBTOHEX" data-ng-controller="ConvertorCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="#"><h1>RGB to HEX</h1></a>
     </div>
-  </div>
+   </nav>
+
     <div class="row text-center top-buffer">
-            <div class="col-xs-3">
-              <label name="red" id="redLabel">Red</label></br>
-              <input type="number"  min = "0" placeholder="0 to 255" ng-model="red" ng-keyup= "convertRGBtoHEX()" >
+          <div class="col-xs-3">
+              <label>Red</label><br>
+              <input type="number"  min = "0" placeholder="0 to 255" data-ng-model="red" data-ng-change= "convertRGBtoHEX()" >
           </div>
           <div class="col-xs-3">
-              <label for="green" id="greenLabel">Green</label></br>
-              <input type="number"  min = "0"  placeholder="0 to 255" ng-model="green" ng-keyup= "convertRGBtoHEX()">
+              <label>Green</label><br>
+              <input type="number"  min = "0"  placeholder="0 to 255" data-ng-model="green" data-ng-change = "convertRGBtoHEX()">
           </div>
           <div class="col-xs-3">
-              <label for="blue" id="blueLabel">Blue</label></br>
-              <input type="number"  min = "0" placeholder="0 to 255" ng-model="blue" ng-keyup= "convertRGBtoHEX()">
+              <label>Blue</label><br>
+              <input type="number"  min = "0" placeholder="0 to 255" data-ng-model="blue" data-ng-change = "convertRGBtoHEX()">
           </div>
-             <div class="col-xs-3">
-                <label for="hex" ng-model="hexLabel">Hex</label></br>
-              <input type="text" maxlength="6" ng-model="hex"  ng-keyup= "converHexToRGB()">
-            </div>
+           <div class="col-xs-3">
+              <label data-ng-model="hexLabel">Hex</label><br>
+              <input type="text" maxlength="6" data-ng-model="hex"  data-ng-keyup= "converHexToRGB()">
+          </div>
     </div>
     <div class="row text-center top-buffer">
-            <div class="well well-lg text-center" ng-style="wall.style">
-                <!--<h2 ng-style="titleLabel.style">RGB TO HEX<h2>-->
-            </div>
-    </div>
-    <div class="row text-center top-buffer">
-      <div class=" col-xs-12 ">
-          <h2>{{consolidatedResult}}</h2>
-       </div> 
-    </div>
-    <div class="row text-center top-buffer">
-        <div class=" col-xs-6 text-center">
-            <a href="#" data-toggle="tooltip" title="Github Link!">
-                    <img src="Resource/github_login_icon.gif" onclick="loadGithubPage()" class="img-circle" alt="Cinque Terre" width="100" height="100">
-            </a>
+        <div class="jumbotron" data-ng-style="wall.style">
+          <!--<h2 ng-style="titleLabel.style">RGB TO HEX<h2>-->
         </div>
-        <div class="col-xs-6 text-center">
-            <button type="button"  style="padding: 0;border: none;background: none;" data-toggle="popover" data-placement="top" title="What does this RGB to Hex converter do?" data-content="A tool for converting RGB values to HEX and vice versa.">
-                    <img src="Resource/help.png" class="img-circle" alt="Cinque Terre" width="100" height="100">
-            </button>
+    </div>
+    <div class="row top-buffer" >
+      <div class = "col-xs-6">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white"> <label>RGB</label> </span>
+           <input type="text" class="form-control" placeholder="0,0,0"  data-ng-model="RGB_out" disabled>
+        </div>
+      </div>
+      <div class = "col-xs-6">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white" > <label>CSS</label> </span>
+           <input type="text" class="form-control" placeholder="rgb(0,0,0)" data-ng-model="CSS_RGB_out" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row top-buffer">
+      <div class = "col-xs-6 ">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white" > <label>HSL</label> </span>
+           <input type="text" class="form-control" placeholder="0,0,0"  data-ng-model="HSL_out" disabled>
+        </div>
+      </div>
+       <div class = "col-xs-6">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white"> <label>CSS</label> </span>
+           <input type="text" class="form-control" placeholder="hsl(0,0,0)"  data-ng-model="CSS_HSL_out" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row top-buffer" >
+      <div class = "col-xs-6 ">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white" > <label>HEX</label> </span>
+           <input type="text" class="form-control" placeholder="0,0,0" data-ng-model="HEX_out" disabled>
+        </div>
+      </div>
+      <div class = "col-xs-6 ">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white" > <label>CMYK</label> </span>
+           <input type="text" class="form-control" placeholder="0,0,0,0" data-ng-model="CMYK_out" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center top-buffer">
+        <div class="col-xs-12 text-center top-buffer">
+          <div class='shareaholic-canvas' data-app='share_buttons' data-app-id='24800556'></div>
+          </div>
         </div>
     </div>
 </div>
-<div class="footer text-center">
-  <div class="container">
+
+<div class="row text-center top-buffer">
     <h4>@RGB to HEX</h4>
-  </div>
-</div>
-</body>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js">
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="js/convertor.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/RGBStyle.css">
-    <link rel="shortcut icon" type="image/png" href="Resource/icon/favicon.ico"/>
-    <link rel="apple-touch-icon" sizes="57x57" href="Resource/icon/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="Resource/icon/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="Resource/icon/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="Resource/icon/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="Resource/icon/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="Resource/icon/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="Resource/icon/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="Resource/icon/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="Resource/icon/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="Resource/icon/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="Resource/icon/android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png" href="Resource/icon/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="Resource/icon/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="Resource/icon/manifest.json">
-<link rel="mask-icon" href="Resource/icon/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-TileImage" content="Resource/icon/mstile-144x144.png">
-<meta name="theme-color" content="#ffffff">
+
+<link rel="stylesheet" property='stylesheet' href="css/bootstrap.min.css">
+<link rel="stylesheet" property='stylesheet' href="css/RGBStyle.css">
+
+    <link rel="shortcut icon" property ="shortcut icon" type="image/png" href="Resource/icon/favicon.ico"/>
+    <link rel="apple-touch-icon" property ="apple-touch-icon" sizes="57x57" href="Resource/icon/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="60x60" href="Resource/icon/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="72x72" href="Resource/icon/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="76x76" href="Resource/icon/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="114x114" href="Resource/icon/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="120x120" href="Resource/icon/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="144x144" href="Resource/icon/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="152x152" href="Resource/icon/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="180x180" href="Resource/icon/apple-touch-icon-180x180.png">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" property ="manifest" href="Resource/icon/manifest.json">
+<link rel="mask-icon" property ="mask-icon" href="Resource/icon/safari-pinned-tab.svg">
+</body>
 </html>

@@ -1,10 +1,34 @@
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52653600-10', 'auto');
+  ga('send', 'pageview');
+
 var app = angular.module('RGBTOHEX', []);
 
 app.controller('ConvertorCtrl', function($scope) {
+
+    function CMYK(c, m, y, k) {
+        if (c <= 0) { c = 0; }
+        if (m <= 0) { m = 0; }
+        if (y <= 0) { y = 0; }
+        if (k <= 0) { k = 0; }
+        if (c > 100) { c = 100; }
+        if (m > 100) { m = 100; }
+        if (y > 100) { y = 100; }
+        if (k > 100) { k = 100; }
+        this.c = c;
+        this.m = m;
+        this.y = y;
+        this.k = k;
+    }
         
         $(document).ready(function($event){
             $('[data-toggle="popover"]').popover();
         });
+
         $scope.consolidatedResult = '';
         $scope.titleLabel = {};
         $scope.wall = {};
@@ -47,7 +71,7 @@ app.controller('ConvertorCtrl', function($scope) {
     }
     $scope.converHexToRGB = function(){
             var finalString = $scope.hex;
-            if(finalString.length > 5){
+            if(finalString.length > 6){
                 return;
             }
             var missingCharCount;
@@ -86,10 +110,91 @@ app.controller('ConvertorCtrl', function($scope) {
             }
     };
     $scope.loadGithubPage = function(){
-        $window.open("https://github.com/balagurubaran/RGBTOHEX/", "_blank");
+        window.open("https://github.com/balagurubaran/RGBTOHEX/", "_blank");
     };
     function updateFinalString(r,g,b,hex){
         $scope.consolidatedResult  = "RGB : ("+r+","+g+","+b+") HEX Code : "+hex;
+        $scope.RGB_out = r+","+g+","+b;
+        $scope.CSS_RGB_out =  "rgb("+r+","+g+","+b+")"
+
+        $scope.HEX_out = hex;
+
+        var hsl = RGBtoHSL(r,g,b);
+        $scope.HSL_out = hsl[0]+","+hsl[1]+","+hsl[2];
+        $scope.CSS_HSL_out = "hsl("+ hsl[0]+","+hsl[1]+","+hsl[2]+")";
+
+        var cmyk = RGBtoCMYK(r,g,b);
+        $scope.CMYK_out = cmyk.c+","+cmyk.m+","+cmyk.y+","+cmyk.k;
     };
+    /**
+ * Converts an RGB color value to HSV. Conversion formula
+ * adapted from http://en.wikipedia.org/wiki/HSV_color_space.
+ * Assumes r, g, and b are contained in the set [0, 255] and
+ * returns h, s, and v in the set [0, 1].
+ *
+ * @param   Number  r       The red color value
+ * @param   Number  g       The green color value
+ * @param   Number  b       The blue color value
+ * @return  Array           The HSV representation
+ */
+function RGBtoHSV(r, g, b){
+    r = r/255, g = g/255, b = b/255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, v = max;
+
+    var d = max - min;
+    s = max == 0 ? 0 : d / max;
+
+    if(max == min){
+        h = 0; // achromatic
+    }else{
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+
+    return [h*360, s*100, v*100];
+}
+
+function RGBtoHSL(r, g, b){
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+
+    return [ Math.round(h*360),  Math.round(s*100),  Math.round(l*100)];
+}
+
+function RGBtoCMYK(r,g,b){
+        var result = new CMYK(0, 0, 0, 0);
+        r = r / 255;
+        g = g / 255;
+        b = b / 255;
+        result.k = Math.min( 1 - r, 1 - g, 1 - b );
+        result.c = ( 1 - r - result.k ) / ( 1 - result.k );
+        result.m = ( 1 - g - result.k ) / ( 1 - result.k );
+        result.y = ( 1 - b - result.k ) / ( 1 - result.k );
+        result.c = Math.round( result.c * 100 );
+        result.m = Math.round( result.m * 100 );
+        result.y = Math.round( result.y * 100 );
+        result.k = Math.round( result.k * 100 );
+        return result;
+    }
+
     
 });

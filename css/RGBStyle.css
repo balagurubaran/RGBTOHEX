@@ -1,3 +1,21 @@
+body {
+    padding-top: 120px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+/*
+.navbar-default .navbar-brand {
+    color: white;
+}
+*/
+.navbar-fixed-top {
+    min-height: 80px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+
+}
+
 .middlebox {
     position: absolute;
     padding-top: 10%;
@@ -9,16 +27,20 @@
 }
 
 .footer {
-    position: absolute;
-    bottom: 0%;
+    position: fixed;
+    padding-bottom: 0%;
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 60px;
-    background-color: #f5f5f5;
 }
 .top-buffer{
     padding-top: 20px;
 }
+.bg-color-black-txt-white{
+    background-color:#000000;
+    color: #ffffff;
+}
+
 input[type="text"], select{
     width:100%;
     box-sizing: border-box;

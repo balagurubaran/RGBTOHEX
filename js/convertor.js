@@ -10,6 +10,7 @@ var app = angular.module('RGBTOHEX', []);
 
 app.controller('ConvertorCtrl', function($scope) {
 
+    var pixelData;
     function CMYK(c, m, y, k) {
         if (c <= 0) { c = 0; }
         if (m <= 0) { m = 0; }
@@ -25,13 +26,14 @@ app.controller('ConvertorCtrl', function($scope) {
         this.k = k;
     }
         
-        $(document).ready(function($event){
-            $('[data-toggle="popover"]').popover();
-        });
+    $(document).ready(function($event){
+        $('[data-toggle="popover"]').popover();
+    });
 
-        $scope.consolidatedResult = '';
-        $scope.titleLabel = {};
-        $scope.wall = {};
+    $scope.consolidatedResult = '';
+    $scope.titleLabel = {};
+    $scope.wall = {};
+
     $scope.convertRGBtoHEX = function(){
     
         var red = parseInt($scope.red);
@@ -69,9 +71,9 @@ app.controller('ConvertorCtrl', function($scope) {
     function insert(str, index, value) {
         return str.substr(0, index) + value + str.substr(index);
     }
-    $scope.converHexToRGB = function(){
+    $scope.converHexToRGB = function(dontCheck){
             var finalString = $scope.hex;
-            if(finalString.length > 6){
+            if(finalString.length > 6 && dontCheck){
                 return;
             }
             var missingCharCount;
@@ -112,6 +114,7 @@ app.controller('ConvertorCtrl', function($scope) {
     $scope.loadGithubPage = function(){
         window.open("https://github.com/balagurubaran/RGBTOHEX/", "_blank");
     };
+
     function updateFinalString(r,g,b,hex){
         $scope.consolidatedResult  = "RGB : ("+r+","+g+","+b+") HEX Code : "+hex;
         $scope.RGB_out = r+","+g+","+b;
@@ -126,7 +129,24 @@ app.controller('ConvertorCtrl', function($scope) {
         var cmyk = RGBtoCMYK(r,g,b);
         $scope.CMYK_out = cmyk.c+","+cmyk.m+","+cmyk.y+","+cmyk.k;
     };
-    /**
+
+    $scope.RGBMousemove = function(){
+        var img = document.getElementById('imgSource');
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
+        
+        var pixelData = canvas.getContext('2d').getImageData(event.offsetX, event.offsetY, 1, 1).data;
+
+        $scope.red = pixelData[0];
+        $scope.green = pixelData[1];
+        $scope.blue = pixelData[2];
+
+        $scope.convertRGBtoHEX();
+        
+    };
+/**
  * Converts an RGB color value to HSV. Conversion formula
  * adapted from http://en.wikipedia.org/wiki/HSV_color_space.
  * Assumes r, g, and b are contained in the set [0, 255] and
@@ -194,7 +214,44 @@ function RGBtoCMYK(r,g,b){
         result.y = Math.round( result.y * 100 );
         result.k = Math.round( result.k * 100 );
         return result;
-    }
+}
 
-    
+
+$scope.keyPressed = function(e) {
+    $scope.keyCode = e.which;
+    if($scope.keyCode == 32){
+      $scope.generateColour();
+    }
+  };
+
+ $scope.generateColour = function() {
+    var hex = '#';
+    var range = 'ABCDEF0123456789';
+
+    for (var i = 0; i < 6; i++ ) {
+      hex += range.charAt(Math.floor(Math.random() * range.length));
+    }
+    $scope.hex = hex;
+    $scope.hidden = false;
+    $scope.converHexToRGB(false);
+    //$('h1').text(hex);
+    //$('body').css('background-color', hex);
+//    $('body').colourBrightness();
+  }
+
 });
+
+  app.directive('shortcut', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: true,
+    link:    function postLink(scope, iElement, iAttrs){
+      jQuery(document).on('keypress', function(e){
+         scope.$apply(scope.keyPressed(e));
+       });
+    }
+  };
+});
+
+  

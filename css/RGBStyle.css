@@ -1,16 +1,19 @@
+/*
 body {
-    padding-top: 120px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    padding-top: 120px; 
 }
 
-/*
 .navbar-default .navbar-brand {
     color: white;
 }
-*/
+
 .navbar-fixed-top {
     min-height: 80px;
 }
-
+*/
+.ng-hide{
+  height: 0;
+}
 .navbar-inverse .navbar-brand {
     color: white;
 
@@ -27,11 +30,12 @@ body {
 }
 
 .footer {
-    position: fixed;
-    padding-bottom: 0%;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+  background-color: #f5f5f5;
 }
 .top-buffer{
     padding-top: 20px;
@@ -50,3 +54,31 @@ input[type="number"], select{
     width:100%;
     box-sizing: border-box;
 }
+
+.dropzone {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+  width: 100%;
+  height: 100%;
+  
+  text-align: center;
+  padding: 30px;
+  margin: 20px;
+  font-family: Arial;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.image-container img {
+   max-width: 100%;   
+}
+
+.file-name {
+   font-family: Arial;   
+}
+
+
+.entete{background-color: #22780F;width:80%;margin-left:10%;}

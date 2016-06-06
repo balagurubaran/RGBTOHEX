@@ -13,15 +13,57 @@
   <meta property="og:description"   content="Easy way to convert RGB to HEX and HEX to RGB" />
   <meta property="og:image"         content="http://www.rgbtohex.in/Resource/icon/apple-touch-icon-180x180.png" />
   <script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='4bbffd298afa9e80017a1344338d85a7' async='async'></script>
+  <link rel="stylesheet" property='stylesheet' href="css/bootstrap.min.css">
+<link rel="stylesheet" property='stylesheet' href="css/RGBStyle.css">
+
+    <link rel="shortcut icon" property ="shortcut icon" type="image/png" href="./favicon.ico"/>
+    <link rel="apple-touch-icon" property ="apple-touch-icon" sizes="57x57" href="Resource/icon/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="60x60" href="Resource/icon/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="72x72" href="Resource/icon/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="76x76" href="Resource/icon/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="114x114" href="Resource/icon/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="120x120" href="Resource/icon/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="144x144" href="Resource/icon/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="152x152" href="Resource/icon/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="180x180" href="Resource/icon/apple-touch-icon-180x180.png">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-96x96.png" sizes="96x96">
+<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" property ="manifest" href="Resource/icon/manifest.json">
+<link rel="mask-icon" property ="mask-icon" href="Resource/icon/safari-pinned-tab.svg">
 
 </head>
 <body>
-<div class="container" data-ng-app="RGBTOHEX" data-ng-controller="ConvertorCtrl">
-    <nav class="navbar navbar-inverse navbar-fixed-top"  role="navigation">
+<div class="container" data-ng-app="RGBTOHEX" data-ng-controller="ConvertorCtrl" data-ng-init= "image='Resource/icon/android-chrome-144x144.png'">
+<shortcut></shortcut>
+    <nav class="navbar navbar-inverse"  role="navigation">
       <div class="navbar-header">
-          <a class="navbar-brand" href="#"><h1>RGB to HEX</h1></a>
-    </div>
+          <a class="navbar-brand" href="#"><img class="img-rounded"  data-ng-src='Resource/icon/android-chrome-144x144.png' style=" margin: .05cm;" height="100%" alt="RGB TO HEX"></a> 
+      </div>
+      <div class="collapse navbar-collapse"> 
+        <ul class="nav navbar-nav"> 
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="hidden = false"><span class="glyphicon glyphicon-menu-hamburger"></span>Rgb to Hex</a></button></li>
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="hidden = true"><span class="glyphicon glyphicon-picture"></span> Image pixel</a></button></li>
+        </ul> 
+        <ul class="nav navbar-nav navbar-right">
+          <li><button type="button" class="btn btn-info" data-toggle="popover" data-placement="bottom" style=" margin: .4cm;" title="RGB to HEX" data-content="It takes input in the form of values for Red, Green and Blue ranging from 0 to 255 and then converts those values to a HEX,HSL,CMYK String">FAQ</button></li>
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;"data-ng-mousemove = "generateColour()" data-toggle="popover" data-placement="bottom" title="Space Bar" data-content="Press the space bar,  It will generate the Random RGB,HEX,HSL,CMYK"><span class="glyphicon glyphicon-console"></span> Space Bar</a></button></li>
+        </ul>
+      </div>
    </nav>
+
+      <div class="row text-center top-buffer" data-ng-show='hidden'>
+        <div class="col-xs-6 text-center ">
+            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+                  file="image" file-name="imageFileName" data-max-file-size="3">
+              <span>Drop Image Here</span>
+            </div>
+        </div> 
+         <div class="col-xs-6 text-center">
+          <img data-ng-src={{image}} class="img-rounded" id = "imgSource"  data-ng-model= "imgSource" alt="image pixel TO RGB,HEX" data-ng-mousemove = "RGBMousemove()"  width="200px" height="200px">
+        </div>
+      </div>
 
     <div class="row text-center top-buffer">
           <div class="col-xs-3">
@@ -38,7 +80,7 @@
           </div>
            <div class="col-xs-3">
               <label data-ng-model="hexLabel">Hex</label><br>
-              <input type="text" maxlength="6" data-ng-model="hex"  data-ng-keyup= "converHexToRGB()">
+              <input type="text" maxlength="6" data-ng-model="hex"  data-ng-keyup= "converHexToRGB(true)">
           </div>
     </div>
     <div class="row text-center top-buffer">
@@ -99,33 +141,15 @@
 </div>
 
 <div class="row text-center top-buffer">
-    <h4>@RGB to HEX</h4>
+    <h1>@RGB to HEX</h1>
 <div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js">
+<script src="js/angular.min.js">
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="js/convertor.js"></script>
+<script  src="js/jquery.min.js"></script>
+<script  src="js/convertor.js"></script>
+<script  src="js/ImageToPixcelColor.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" property='stylesheet' href="css/bootstrap.min.css">
-<link rel="stylesheet" property='stylesheet' href="css/RGBStyle.css">
-
-    <link rel="shortcut icon" property ="shortcut icon" type="image/png" href="Resource/icon/favicon.ico"/>
-    <link rel="apple-touch-icon" property ="apple-touch-icon" sizes="57x57" href="Resource/icon/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="60x60" href="Resource/icon/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="72x72" href="Resource/icon/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="76x76" href="Resource/icon/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="114x114" href="Resource/icon/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="120x120" href="Resource/icon/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="144x144" href="Resource/icon/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="152x152" href="Resource/icon/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" property ="apple-touch-icon" sizes="180x180" href="Resource/icon/apple-touch-icon-180x180.png">
-<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-32x32.png" sizes="32x32">
-<link rel="icon" property ="icon" type="image/png" href="Resource/icon/android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-96x96.png" sizes="96x96">
-<link rel="icon" property ="icon" type="image/png" href="Resource/icon/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" property ="manifest" href="Resource/icon/manifest.json">
-<link rel="mask-icon" property ="mask-icon" href="Resource/icon/safari-pinned-tab.svg">
 </body>
 </html>

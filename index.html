@@ -48,20 +48,43 @@
         </ul> 
         <ul class="nav navbar-nav navbar-right">
           <li><button type="button" class="btn btn-info" data-toggle="popover" data-placement="bottom" style=" margin: .4cm;" title="RGB to HEX" data-content="It takes input in the form of values for Red, Green and Blue ranging from 0 to 255 and then converts those values to a HEX,HSL,CMYK String">FAQ</button></li>
-          <li><button type="button" class="btn btn-info" style=" margin: .4cm;"data-ng-mousemove = "generateColour()" data-toggle="popover" data-placement="bottom" title="Space Bar" data-content="Press the space bar,  It will generate the Random RGB,HEX,HSL,CMYK"><span class="glyphicon glyphicon-console"></span> Space Bar</a></button></li>
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-toggle="popover" data-placement="bottom" title="Space Bar" data-content="Press the space bar, It will generate the Random RGB,HEX,HSL,CMYK"><span class="glyphicon glyphicon-console"></span> Space Bar</a></button></li>
         </ul>
       </div>
    </nav>
 
-      <div class="row text-center top-buffer" data-ng-show='hidden'>
+      <div class="row text-center top-buffer" data-ng-show='hidden' ng-init="hidden=true">
         <div class="col-xs-6 text-center ">
             <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
                   file="image" file-name="imageFileName" data-max-file-size="3">
               <span>Drop Image Here</span>
             </div>
+            
         </div> 
          <div class="col-xs-6 text-center">
-          <img data-ng-src={{image}} class="img-rounded" id = "imgSource"  data-ng-model= "imgSource" alt="image pixel TO RGB,HEX" data-ng-mousemove = "RGBMousemove()"  width="200px" height="200px">
+          <img data-ng-src={{image}} class="img-rounded" id = "imgSource"  data-ng-model= "imgSource" alt="image pixel TO RGB,HEX" data-ng-click = "RGBMousemove()"  width="50%" height="50%">
+          <div class="alert alert-info" style="margin: 20px;">
+                <strong>Info!</strong> Click / Tap over the image and get the pixel color as RGB,HEX,HSL,CMYK.
+            </div>
+        </div>
+      </div>
+
+      <div class = "row text-center top-buffer">
+        <div class="col-xs-12">
+            <script type="text/javascript">
+                amzn_assoc_ad_type = "banner";
+                amzn_assoc_marketplace = "amazon";
+                amzn_assoc_region = "US";
+                amzn_assoc_placement = "assoc_banner_placement_default";
+                amzn_assoc_campaigns = "amazonhomepage";
+                amzn_assoc_banner_type = "rotating";
+                amzn_assoc_p = "48";
+                amzn_assoc_width = "728";
+                amzn_assoc_height = "90";
+                amzn_assoc_tracking_id = "balagurubaran-20";
+                amzn_assoc_linkid = "b04adc5a262713dcff5bf4fa12a9b8f2";
+             </script>
+              <script src="//z-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1"></script>
         </div>
       </div>
 
@@ -150,6 +173,14 @@
 <script  src="js/convertor.js"></script>
 <script  src="js/ImageToPixcelColor.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+    amzn_assoc_ad_type = "link_enhancement_widget";
+    amzn_assoc_tracking_id = "balagurubaran-20";
+    amzn_assoc_linkid = "d221fc5aa52d34d9b5e2dfc9b9658f42";
+    amzn_assoc_placement = "";
+    amzn_assoc_marketplace = "amazon";
+    amzn_assoc_region = "US";
+</script>
+<script src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&Operation=GetScript&ID=OneJS&WS=1&MarketPlace=US"></script>
 </body>
 </html>

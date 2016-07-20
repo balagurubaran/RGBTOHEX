@@ -80,5 +80,12 @@ input[type="number"], select{
    font-family: Arial;   
 }
 
-
 .entete{background-color: #22780F;width:80%;margin-left:10%;}
+
+.ng- {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  top:-200px;
+  left: 200px;
+}

@@ -10,6 +10,10 @@ var app = angular.module('RGBTOHEX', []);
 
 app.controller('ConvertorCtrl', function($scope) {
 
+    showRGB = true;
+    showImagePixel = false;
+    showColorPallete = false;
+
     var pixelData;
     function CMYK(c, m, y, k) {
         if (c <= 0) { c = 0; }
@@ -238,6 +242,24 @@ $scope.keyPressed = function(e) {
     //$('body').css('background-color', hex);
 //    $('body').colourBrightness();
   }
+  $scope.showRGBtoHEX = function(){
+    showRGB = true;
+    showImagePixel = false;
+    showColorPallete = false;
+  }
+
+  $scope.showiamgePixel = function(){
+    showRGB = false;
+    showImagePixel = true;
+    showColorPallete = false;
+  }
+
+  $scope.showColor = function(){
+    showRGB = false;
+    showImagePixel = false;
+    showColorPallete = true;
+  }
+
 
 });
 

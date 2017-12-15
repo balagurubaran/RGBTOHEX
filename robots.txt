@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Slurp
+Allow: /
+User-Agent: msnbot
+Allow: 
+#Begin Attracta SEO Tools Sitemap. Do not remove
+sitemap: http://cdn.attracta.com/sitemap/4748814.xml.gz
+#End Attracta SEO Tools Sitemap. Do not remove

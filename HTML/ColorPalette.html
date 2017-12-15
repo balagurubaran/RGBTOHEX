@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body >
+<div class="row text-center top-buffer">
+        <div class="col-xs-6 text-center ">
+            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+                  file="image" file-name="imageFileName" data-max-file-size="5">
+              <span>Drop Image</span>
+            </div>
+
+             <div class="alert alert-info" style="margin: 20px;">
+                <strong>Palette!</strong>
+             </div>
+          <div style="padding-left:35px; height:120px;">
+              <div class= "small_box50" data-ng-style="paletteOne.style" data-ng-click = "colorCodePalette(0)" id = "paletteOne"></div>
+              <div class= "small_box50" data-ng-style="paletteTwo.style" data-ng-click = "colorCodePalette(1)" id = "paletteTwo"></div>
+              <div class= "small_box50" data-ng-style="paletteThree.style" data-ng-click = "colorCodePalette(2)" id = "paletteThree"></div>
+              <div class= "small_box50" data-ng-style="paletteFour.style" data-ng-click = "colorCodePalette(3)" id = "paletteFour"></div>
+              <div class= "small_box50" data-ng-style="paletteFive.style" data-ng-click = "colorCodePalette(4)" id = "paletteFive"></div>
+               <div class= "small_box50" data-ng-style="paletteSix.style" data-ng-click = "colorCodePalette(5)" id = "paletteSix"></div>
+              <div class= "small_box50" data-ng-style="paletteSeven.style" data-ng-click = "colorCodePalette(6)" id = "paletteSeven"></div>
+              <div class= "small_box50" data-ng-style="paletteEight.style" data-ng-click = "colorCodePalette(7)" id = "paletteEight"></div>
+            </div>
+            <div class="alert alert-info" style="margin: 20px;">
+                <strong>Dominant color!</strong>
+             </div>
+             <div class= "small_box380" data-ng-style="dominatColor.style" data-ng-click = "colorCodePalette(8)"></div>
+        </div> 
+         <div class="col-xs-6 text-center">
+          <img data-ng-src={{image}}  class="img-rounded" id = "imgSource"  data-ng-model= "imgSource" alt="image pixel TO RGB,HEX" data-ng-click = "RGBMousemove('imgSource')"  width="60%" height="10%" imageonload="imagePalette()">
+<!-- 
+          <img id = 'imgg' ng-src="http://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png" data-ng-model= "imgSource" class="horizontal" imageonload /> -->
+
+        </div>
+</div>
+</body>
+</html>

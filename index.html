@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>RGB to HEX</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0">
-<META NAME="description" CONTENT="convert RGB to HEX and HEX to RGB">
+<META NAME="description" CONTENT="https://www.rgbtohex.in is used to convert RGB & HEX color to Objective-C,Swift UIColor and CSS Color code  ">
 <META NAME="robot" CONTENT="index,follow">
 <meta name="google-site-verification" content="Xu_zTFYzZxbASEyZPG34VmSOndRFMmZYZHp0NjLIWC0" />
 <meta property="og:url"           content="http://www.rgbtohex.in" />
@@ -12,10 +12,9 @@
   <meta property="og:title"         content="RGB to HEX" />
   <meta property="og:description"   content="Easy way to convert RGB to HEX and HEX to RGB" />
   <meta property="og:image"         content="http://www.rgbtohex.in/Resource/icon/apple-touch-icon-180x180.png" />
- 
-  <link rel="stylesheet" property='stylesheet' href="css/bootstrap.min.css">
+  
 <link rel="stylesheet" property='stylesheet' href="css/RGBStyle.css">
-
+<link rel="stylesheet" property='stylesheet' href="css/bootstrap.min.css">
     <link rel="shortcut icon" property ="shortcut icon" type="image/png" href="./favicon.ico"/>
     <link rel="apple-touch-icon" property ="apple-touch-icon" sizes="57x57" href="Resource/icon/apple-touch-icon-57x57.png">
 <link rel="apple-touch-icon" property ="apple-touch-icon" sizes="60x60" href="Resource/icon/apple-touch-icon-60x60.png">
@@ -39,119 +38,181 @@
 <shortcut></shortcut>
     <nav class="navbar navbar-inverse"  role="navigation">
       <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img class="img-rounded"  data-ng-src='Resource/icon/android-chrome-144x144.png' style=" margin: .05cm;" height="100%" alt="RGB TO HEX"></a> 
+          <a class="navbar-brand" href="#"><img data-ng-src='Resource/icon/android-chrome-144x144.png' style=" margin: .05cm;" height="100%" alt="RGB TO HEX"></a> 
       </div>
       <div class="collapse navbar-collapse"> 
         <ul class="nav navbar-nav"> 
-          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="showRGBtoHEX()"><span class="glyphicon glyphicon-menu-hamburger"></span>Rgb to Hex</a></button></li>
-          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="showiamgePixel()"><span class="glyphicon glyphicon-picture"></span> Image pixel</a></button></li>
-          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="showColor()"><span class="glyphicon glyphicon-picture"></span> Color pallete</a></button></li>
+           <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="showRGBtoHEX()"><span class="glyphicon glyphicon-menu-hamburger"></span>Rgb to Hex</button></li>
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="showiamgePixel()"><span class="glyphicon glyphicon-picture"></span> Image pixel</button></li>
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-ng-click="showColor()"><span class="glyphicon glyphicon-picture"></span> Color pallete</button></li>
         </ul> 
         <ul class="nav navbar-nav navbar-right">
-          <li><button type="button" class="btn btn-info" data-toggle="popover" data-placement="bottom" style=" margin: .4cm;" title="RGB to HEX" data-content="It takes input in the form of values for Red, Green and Blue ranging from 0 to 255 and then converts those values to a HEX,HSL,CMYK String">FAQ</button></li>
-          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-toggle="popover" data-placement="bottom" title="Space Bar" data-content="Press the space bar, It will generate the Random RGB,HEX,HSL,CMYK"><span class="glyphicon glyphicon-console"></span> Space Bar</a></button></li>
+          <li>
+            <button type="button" class="btn btn-info" style=" margin: .4cm;" data-toggle="modal" data-target="#FAQModal">FAQ</button>
+          </li>
+          <li><button type="button" class="btn btn-info" style=" margin: .4cm;" data-toggle="popover" data-placement="bottom" title="Space Bar" data-content="Press the space bar,  It will generate the Random RGB,HEX,HSL,CMYK"><span class="glyphicon glyphicon-console"></span> Space Bar</a></button></li>
+          <li>
+            <button type="button" class="btn btn-info" style=" margin: .4cm;" data-toggle="modal" data-target="#WHYRGBtoHEXModal">Why RGB to HEX</button>
+          </li>
         </ul>
       </div>
    </nav>
+   
+   <div id="FAQModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-      <div class="row text-center top-buffer" data-ng-show='hidden' ng-init="hidden=true">
-        <div class="col-xs-6 text-center ">
-            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-                  file="image" file-name="imageFileName" data-max-file-size="3">
-              <span>Drop Image Here</span>
-            </div>
-            
-        </div> 
-         <div class="col-xs-6 text-center">
-          <img data-ng-src={{image}} class="img-rounded" id = "imgSource"  data-ng-model= "imgSource" alt="image pixel TO RGB,HEX" data-ng-click = "RGBMousemove()"  width="50%" height="50%">
-          <div class="alert alert-info" style="margin: 20px;">
-                <strong>Info!</strong> Click / Tap over the image and get the pixel color as RGB,HEX,HSL,CMYK.
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">FAQ - RGB TO HEX</h4>
+      </div>
+      <div class="modal-body">
+
+        <p>1. It takes input in the form of values for Red, Green and Blue ranging from 0 to 255 and then converts those values to a HEX,HSL,CMYK String</p>
+        <p>2. Press the space bar, It will generate the Random RGB,HEX,HSL,CMYK</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+   <div id="WHYRGBtoHEXModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Why RGB to HEX</h4>
+      </div>
+      <div class="modal-body">
+        <h2>Why https://www.rgbtohex.in</h2>
+        <p>I tried lot of websites to convert the RGB to other color format. Most of the cases my self end up with frustation. 
+        In that moment i decided to create a website with less advertisment.</p></br>
+        <p>I know and I agree that the adds will provide money to run the websites but we have to think of the user experince also</p> </br>
+        <p>It may yield you revenue for the time being but it wont maje you sustain in the market for the long term. The user easily get frustrated bcoz of the advertisement placement in the random place or N number of adverstisment</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+   <div ng-view></div>
+    <!--<div data-image-to-pixel data-ng-if = "showImagePixel"> </div>
+  <div data-color-paletee data-ng-if = "showColorPallete"> </div>!-->
+
+    <div class="row m">
+        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+          <div class="input-group input-group-lg">
+             <span class="input-group-addon bg-color-black-txt-white" >Red</span>
+            <input type="number" class="form-control" min = "0"  placeholder="0 to 255" data-ng-model="red" data-ng-change= "convertRGBtoHEX()">
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon bg-color-black-txt-white" >Green</span>
+              <input type="number" class="form-control" min = "0"  placeholder="0 to 255" data-ng-model="green" data-ng-change= "convertRGBtoHEX()">
             </div>
         </div>
-      </div>
-    <div class="row text-center top-buffer">
-          <div class="col-xs-3">
-              <label>Red</label><br>
-              <input type="number"  min = "0" placeholder="0 to 255" data-ng-model="red" data-ng-change= "convertRGBtoHEX()" >
-          </div>
-          <div class="col-xs-3">
-              <label>Green</label><br>
-              <input type="number"  min = "0"  placeholder="0 to 255" data-ng-model="green" data-ng-change = "convertRGBtoHEX()">
-          </div>
-          <div class="col-xs-3">
-              <label>Blue</label><br>
-              <input type="number"  min = "0" placeholder="0 to 255" data-ng-model="blue" data-ng-change = "convertRGBtoHEX()">
-          </div>
-           <div class="col-xs-3">
-              <label data-ng-model="hexLabel">Hex</label><br>
-              <input type="text" maxlength="6" data-ng-model="hex"  data-ng-keyup= "converHexToRGB(true)">
-          </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon bg-color-black-txt-white" >Blue</span>
+              <input type="number" class="form-control" min = "0"  placeholder="0 to 255" data-ng-model="blue" data-ng-change= "convertRGBtoHEX()">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 form-group">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon bg-color-black-txt-white" >Hex</span>
+              <input type="text" class="form-control" maxlength="6"  placeholder="#000000" data-ng-model="hex" data-ng-change= "converHexToRGB(true)">
+            </div>
+        </div>
     </div>
-    <div class="row text-center top-buffer">
-        <div class="jumbotron" data-ng-style="wall.style">
+    <div class="row m">
+        <div class="jumbotron m" data-ng-style="wall.style">
           <!--<h2 ng-style="titleLabel.style">RGB TO HEX<h2>-->
         </div>
     </div>
-    <div class="row top-buffer" >
-      <div class = "col-xs-6">
+    <div class="row m" >
+      <div class = "col-xs-12 col-sm-12 col-md-3 form-group">
         <div class="input-group input-group-lg">
-           <span class="input-group-addon bg-color-black-txt-white"> <label>RGB</label> </span>
-           <input type="text" class="form-control" placeholder="0,0,0"  data-ng-model="RGB_out" disabled>
-        </div>
-      </div>
-      <div class = "col-xs-6">
-        <div class="input-group input-group-lg">
-           <span class="input-group-addon bg-color-black-txt-white" > <label>CSS</label> </span>
+           <span class="input-group-addon bg-color-black-txt-white" >RGB</span>
            <input type="text" class="form-control" placeholder="rgb(0,0,0)" data-ng-model="CSS_RGB_out" disabled>
         </div>
       </div>
-    </div>
-
-    <div class="row top-buffer">
-      <div class = "col-xs-6 ">
+      <div class = "col-xs-12  col-sm-12 col-md-9 form-group">
         <div class="input-group input-group-lg">
-           <span class="input-group-addon bg-color-black-txt-white" > <label>HSL</label> </span>
-           <input type="text" class="form-control" placeholder="0,0,0"  data-ng-model="HSL_out" disabled>
+           <span class="input-group-addon bg-color-black-txt-white" > Obj-C</span>
+           <input type="text" class="form-control" placeholder="rgb(0,0,0)" data-ng-model="Objective_c">
         </div>
       </div>
-       <div class = "col-xs-6">
+    </div>
+
+    <div class="row m">
+       <div class = "col-xs-12  col-sm-12 col-md-3 form-group" >
         <div class="input-group input-group-lg">
-           <span class="input-group-addon bg-color-black-txt-white"> <label>CSS</label> </span>
+           <span class="input-group-addon bg-color-black-txt-white">HSL</span>
            <input type="text" class="form-control" placeholder="hsl(0,0,0)"  data-ng-model="CSS_HSL_out" disabled>
         </div>
       </div>
+       <div class = "col-xs-12  col-sm-12 col-md-9 form-group">
+        <div class="input-group input-group-lg">
+           <span class="input-group-addon bg-color-black-txt-white" >Swift</span>
+           <input type="text" class="form-control" placeholder="rgb(0,0,0)" data-ng-model="swift3">
+        </div>
+      </div>
     </div>
 
-    <div class="row top-buffer" >
-      <div class = "col-xs-6 ">
+    <div class="row m" >
+      <div class = "col-xs-12  col-sm-12 col-md-3 form-group">
         <div class="input-group input-group-lg">
-           <span class="input-group-addon bg-color-black-txt-white" > <label>HEX</label> </span>
+           <span class="input-group-addon bg-color-black-txt-white" >HEX</span>
            <input type="text" class="form-control" placeholder="0,0,0" data-ng-model="HEX_out" disabled>
         </div>
       </div>
-      <div class = "col-xs-6 ">
+      <div class = "col-xs-12  col-sm-12 col-md-9 form-group">
         <div class="input-group input-group-lg">
-           <span class="input-group-addon bg-color-black-txt-white" > <label>CMYK</label> </span>
+           <span class="input-group-addon bg-color-black-txt-white" >CMYK</span>
            <input type="text" class="form-control" placeholder="0,0,0,0" data-ng-model="CMYK_out" disabled>
         </div>
-      </div>
     </div>
-    <div class="row text-center top-buffer">
-        <div class="col-xs-12 text-center top-buffer">
+    </div>
+    <div class="row m panel panel-primary">
+    <div class="panel-heading">Reference</div>
+    <div class="panel-body">
+     <a href="http://jsfiddle.net/Mottie/xcqpF/1/light/" target="_blank" class="alert-link">The RGB-to-HEX converter algorithm</a></br>
+      <a href="https://www.w3schools.com/colors/colors_names.asp" target="_blank" class="alert-link">All the browser supports color list</a></br>
+     <a href="https://en.wikipedia.org/wiki/RGB_color_model" target="_blank" class="alert-link">What is RGB Color model?</a></br>
+      <a href="http://www.tigercolor.com/color-lab/tips/tip-01.html" target="_blank" class="alert-link">Why we need color palatte?</a></br>
+      <a href="http://www.wikihow.com/Convert-RGB-to-Hex" target="_blank" class="alert-link">How to convert RGB value to HEX value?</a></br>
+      <a href="https://developer.apple.com/reference/uikit/uicolor" target="_blank" class="alert-link">Objective-C, Swift UIColor</a></br>
+      <a href="http://www.techiespoint.com/search?q=UIColor" target="_blank" class="alert-link">More question about UIColor in techiespoint.com</a></br>
+    </div>
+  </div>
+    <div class="row text-center">
+        <div class="col-xs-12 text-center">
           <div class='shareaholic-canvas' data-app='share_buttons' data-app-id='24800556'></div>
           </div>
         </div>
     </div>
 </div>
-
-<div class="row text-center top-buffer">
-    <h1>@RGB to HEX</h1>
+<div class="row text-center">
+    <h3>@RGB to HEX</h3>
 <div>
 
 <script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
 <script  src="js/jquery.min.js"></script>
 <script  src="js/convertor.js"></script>
 <script  src="js/ImageToPixcelColor.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/color-thief.js"></script>
+<script type='text/javascript' data-cfasync='false' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='4bbffd298afa9e80017a1344338d85a7' async='async'></script>
+  
 </body>
 </html>

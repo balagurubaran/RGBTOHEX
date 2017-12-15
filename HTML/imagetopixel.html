@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body >
+<div class="row text-center top-buffer">
+        <div class="col-xs-6 text-center ">
+            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+                  file="image" file-name="imageFileName" data-max-file-size="5">
+              <span>Drop Image Here</span>
+            </div>
+            <div class="alert alert-info" style="margin: 20px;">
+                <strong>Info!</strong> Click / Tap over the image and get the pixel color as RGB,HEX,HSL,CMYK.
+          </div>
+        </div> 
+         <div class="col-xs-6 text-center">
+          <img data-ng-src={{image}} class="img-rounded" id = "imgSource"  data-ng-model= "imgSource" alt="image pixel TO RGB,HEX" data-ng-click = "RGBMousemove('imgSource')"  width="50%" height="50%">
+        </div>
+</div>
+</body>
+</html>
